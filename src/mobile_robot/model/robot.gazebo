@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!-- ############################################### -->
+<!-- GAZEBO ADDITIONAL DESCRIPTION OF THE 4-WHEELED ROBOT -->
+<!-- Made by PRAVEEN                               -->
+<!-- April 2025                                    -->
+<!-- ############################################### -->
+<robot>
+<!-- Everything is described here -->
+<!-- http://classic.gazebosim.org/tutorials?tut=ros_urdf&cat=connect_ros -->
+<!-- mu1 and mu2 are friction coefficients  -->
+<gazebo reference="body_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Red</material>
+</gazebo>
+
+<gazebo reference="wheel1_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Yellow</material>
+</gazebo>
+
+<gazebo reference="wheel2_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Yellow</material>
+</gazebo>
+
+<gazebo reference="wheel3_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Yellow</material>
+</gazebo>
+
+<gazebo reference="wheel4_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Yellow</material>
+</gazebo>
+
+<!-- Controller for the 4-wheeled robot -->
+<gazebo>
+    <plugin filename="libgazebo_ros_diff_drive.so" name="skid_steer_drive">
+        <ros>
+            <namespace> </namespace>
+        </ros>
+
+        <!-- Number of wheel pairs-->
+        <num_wheel_pairs>2</num_wheel_pairs>
+
+        <!-- wheels0 -->
+        <left_joint>wheel4_joint</left_joint>
+        <right_joint>wheel3_joint</right_joint>
+
+        <!-- wheels1 -->  
+        <left_joint>wheel2_joint</left_joint>
+        <right_joint>wheel1_joint</right_joint>
+
+        <!-- kinematics -->
+        <!-- Replace these with actual values if needed -->
+        <wheel_separation>0.5</wheel_separation>
+        <wheel_separation>0.5</wheel_separation>
+
+        <wheel_diameter>0.1</wheel_diameter>
+        <wheel_diameter>0.1</wheel_diameter>
+
+        <!-- limits -->
+        <max_wheel_torque>1000</max_wheel_torque>
+        <max_wheel_acceleration>5.0</max_wheel_acceleration>
+
+        <!-- output -->
+        <publish_odom>true</publish_odom>
+        <publish_odom_tf>true</publish_odom_tf>
+        <publish_wheel_tf>true</publish_wheel_tf>
+
+        <odometry_frame>odom</odometry_frame>
+        <odometry_base_frame>dummy</odometry_base_frame>
+    </plugin>
+</gazebo>
+
+</robot>
